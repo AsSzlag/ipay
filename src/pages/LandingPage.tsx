@@ -17,8 +17,10 @@ export default function LandingPage() {
   const [selectedClientType, setSelectedClientType] = useState<'individual' | 'business'>('individual')
   const navigate = useNavigate()
 
-  const handleContinue = () => {
-    if (selectedClientType === 'individual') {
+  const handleClientSelect = (type: 'individual' | 'business') => {
+    setSelectedClientType(type)
+    // Auto-navigate when selection is made
+    if (type === 'individual') {
       navigate('/individual')
     } else {
       navigate('/business')
@@ -26,38 +28,87 @@ export default function LandingPage() {
   }
 
   return (
-    <Card sx={{ maxWidth: 600, mx: 'auto', boxShadow: 3 }}>
-      <CardContent sx={{ p: 4 }}>
-        <Box sx={{ mb: 4, textAlign: 'left' }}>
-          <Typography variant="h3" component="h1" gutterBottom>
+    <Card sx={{ 
+      maxWidth: 600, 
+      mx: 'auto', 
+      boxShadow: 3,
+      borderRadius: 4,
+      overflow: 'visible'
+    }}>
+      <CardContent sx={{ p: 5 }}>
+        <Box sx={{ mb: 5, textAlign: 'left' }}>
+          <Typography 
+            variant="h3" 
+            component="h1" 
+            gutterBottom
+            sx={{
+              fontSize: { xs: '2rem', sm: '2.5rem' },
+              fontWeight: 700,
+              color: 'text.primary',
+              mb: 1
+            }}
+          >
             Dopasuj ratę
           </Typography>
-          <Typography variant="h6" color="text.secondary">
+          <Typography 
+            variant="h6" 
+            color="text.secondary"
+            sx={{
+              fontSize: '1.1rem',
+              fontWeight: 400
+            }}
+          >
             Czego potrzebujesz
           </Typography>
         </Box>
         
-        <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} sx={{ mb: 4 }}>
+        <Stack 
+          direction="row" 
+          spacing={0} 
+          sx={{ 
+            mb: 0,
+            '& .MuiButton-root': {
+              borderRadius: 0,
+              borderRightWidth: 0,
+              '&:last-child': {
+                borderRightWidth: 1,
+              }
+            }
+          }}
+        >
           <Button
             fullWidth
             variant={selectedClientType === 'individual' ? 'contained' : 'outlined'}
-            onClick={() => setSelectedClientType('individual')}
+            onClick={() => handleClientSelect('individual')}
             sx={{
               p: 3,
               height: 140,
               flexDirection: 'column',
               gap: 2,
-              borderWidth: 2,
+              borderWidth: 1,
+              borderColor: 'divider',
+              borderRadius: '12px 0 0 12px',
               '&:hover': {
-                borderWidth: 2,
                 transform: 'translateY(-2px)',
                 boxShadow: 4,
+                borderWidth: 1,
               },
               transition: 'all 0.3s ease',
+              ...(selectedClientType === 'individual' && {
+                backgroundColor: 'primary.main',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'primary.dark',
+                }
+              })
             }}
           >
             <PersonIcon sx={{ fontSize: 48 }} />
-            <Typography variant="body1" fontWeight="medium">
+            <Typography 
+              variant="body1" 
+              fontWeight="medium"
+              sx={{ fontSize: '1rem' }}
+            >
               Klient indywidualny
             </Typography>
           </Button>
@@ -65,49 +116,40 @@ export default function LandingPage() {
           <Button
             fullWidth
             variant={selectedClientType === 'business' ? 'contained' : 'outlined'}
-            onClick={() => setSelectedClientType('business')}
+            onClick={() => handleClientSelect('business')}
             sx={{
               p: 3,
               height: 140,
               flexDirection: 'column',
               gap: 2,
-              borderWidth: 2,
+              borderWidth: 1,
+              borderColor: 'divider',
+              borderRadius: '0 12px 12px 0',
               '&:hover': {
-                borderWidth: 2,
                 transform: 'translateY(-2px)',
                 boxShadow: 4,
+                borderWidth: 1,
               },
               transition: 'all 0.3s ease',
+              ...(selectedClientType === 'business' && {
+                backgroundColor: 'primary.main',
+                color: 'white',
+                '&:hover': {
+                  backgroundColor: 'primary.dark',
+                }
+              })
             }}
           >
             <BusinessIcon sx={{ fontSize: 48 }} />
-            <Typography variant="body1" fontWeight="medium">
+            <Typography 
+              variant="body1" 
+              fontWeight="medium"
+              sx={{ fontSize: '1rem' }}
+            >
               Klient firmowy
             </Typography>
           </Button>
         </Stack>
-
-        <Box sx={{ textAlign: 'center' }}>
-          <Button
-            variant="contained"
-            size="large"
-            onClick={handleContinue}
-            sx={{
-              px: 4,
-              py: 1.5,
-              fontSize: '1.1rem',
-              fontWeight: 600,
-              minWidth: 150,
-              '&:hover': {
-                transform: 'translateY(-2px)',
-                boxShadow: 4,
-              },
-              transition: 'all 0.3s ease',
-            }}
-          >
-            Kontynuuj
-          </Button>
-        </Box>
       </CardContent>
     </Card>
   )
