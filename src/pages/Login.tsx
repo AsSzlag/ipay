@@ -349,7 +349,7 @@ export default function Login() {
         {/* Features Section */}
         <Grid container spacing={3} sx={{ mb: 4 }}>
           {features.map((feature, index) => (
-            <Grid item xs={12} sm={4} key={index}>
+            <Grid key={index}>
               <Paper
                 elevation={0}
                 sx={{
