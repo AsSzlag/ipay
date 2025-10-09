@@ -51,7 +51,7 @@ export const generateId = (): string => {
  * Sleep/delay function
  */
 export const sleep = (ms: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 };
 
 /**
@@ -60,7 +60,7 @@ export const sleep = (ms: number): Promise<void> => {
 export const getInitials = (name: string): string => {
   return name
     .split(' ')
-    .map((word) => word[0])
+    .map(word => word[0])
     .join('')
     .toUpperCase()
     .slice(0, 2);
@@ -98,4 +98,3 @@ export const isEmpty = (obj: object): boolean => {
 export const unique = <T>(array: T[]): T[] => {
   return [...new Set(array)];
 };
-

@@ -16,7 +16,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
         color: 'text.primary',
         borderBottom: 1,
         borderColor: 'divider',
-        zIndex: (theme) => theme.zIndex.drawer + 1,
+        zIndex: theme => theme.zIndex.drawer + 1,
       }}
     >
       <Toolbar sx={{ justifyContent: 'space-between' }}>
@@ -30,7 +30,7 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
           >
             <MenuIcon />
           </IconButton>
-          
+
           <Typography
             variant="h5"
             component="div"
@@ -55,4 +55,3 @@ export const Header = ({ onMenuClick }: HeaderProps) => {
     </AppBar>
   );
 };
-

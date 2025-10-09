@@ -3,6 +3,7 @@
 ## 🚀 Axios Setup
 
 This project uses **Axios** for all API communications with advanced features like:
+
 - Request/Response interceptors
 - Automatic authentication token handling
 - Global error handling
@@ -16,16 +17,18 @@ The API configuration uses Vite's environment variables. All variables must be p
 ### Setup Instructions
 
 1. **Copy the example file:**
+
    ```bash
    cp .env.example .env
    ```
 
 2. **Update the values in `.env`:**
+
    ```env
    # API Configuration
    VITE_API_BASE_URL=http://localhost:3000/api
    VITE_API_TIMEOUT=10000
-   
+
    # Add your Firebase config if needed
    VITE_FIREBASE_API_KEY=your_key_here
    VITE_FIREBASE_AUTH_DOMAIN=your_domain_here
@@ -130,6 +133,7 @@ try {
 ### Request Logging
 
 In development mode, all API requests and responses are logged to the console:
+
 - 🚀 Outgoing requests
 - ✅ Successful responses
 - ❌ Error responses
@@ -153,7 +157,8 @@ All API methods are fully typed with TypeScript:
 import type { Client, Payment, ApiResponse } from '@/types';
 
 // Type-safe API calls
-const response: ApiResponse<Client> = await apiService.get<Client>('/clients/123');
+const response: ApiResponse<Client> =
+  await apiService.get<Client>('/clients/123');
 const client: Client = response.data;
 ```
 
@@ -177,4 +182,3 @@ VITE_API_TIMEOUT=15000
 - ✅ Only `VITE_` prefixed variables are exposed to the client
 - ✅ Never commit sensitive API keys or tokens to Git
 - ✅ Use `.env.example` to document required variables without exposing secrets
-

@@ -6,20 +6,23 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Toolbar,
   Box,
-  Divider,
   Typography,
+  Link,
 } from '@mui/material';
 import {
   Home as HomeIcon,
-  Person as PersonIcon,
-  Business as BusinessIcon,
-  Payment as PaymentIcon,
-  People as PeopleIcon,
+  List as ListIcon,
+  Add as AddIcon,
+  Star as StarIcon,
+  Email as EmailIcon,
+  Share as ShareIcon,
+  Security as SecurityIcon,
   Settings as SettingsIcon,
-  Analytics as AnalyticsIcon,
-  Receipt as ReceiptIcon,
+  Help as HelpIcon,
+  Logout as LogoutIcon,
+  Phone as PhoneIcon,
+  Email as EmailContactIcon,
 } from '@mui/icons-material';
 
 interface SidebarProps {
@@ -36,71 +39,194 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { text: 'Strona główna', icon: <HomeIcon />, path: '/' },
-  { text: 'Klient indywidualny', icon: <PersonIcon />, path: '/individual' },
-  { text: 'Klient biznesowy', icon: <BusinessIcon />, path: '/business' },
-  { text: 'Płatności', icon: <PaymentIcon />, path: '/payments', divider: true },
-  { text: 'Klienci', icon: <PeopleIcon />, path: '/clients' },
-  { text: 'Faktury', icon: <ReceiptIcon />, path: '/invoices' },
-  { text: 'Analityka', icon: <AnalyticsIcon />, path: '/analytics', divider: true },
-  { text: 'Ustawienia', icon: <SettingsIcon />, path: '/settings' },
+  { text: 'Panel Klienta', icon: <HomeIcon />, path: '/app' },
+  { text: 'Lista wniosków', icon: <ListIcon />, path: '/app/applications' },
+  { text: 'Nowy wniosek', icon: <AddIcon />, path: '/app/new-application' },
+  { text: 'Program lojalnościowy', icon: <StarIcon />, path: '/app/loyalty' },
+  { text: 'System poleceń', icon: <EmailIcon />, path: '/app/referrals' },
+  { text: 'Udostępnij do aplikacji', icon: <ShareIcon />, path: '/app/share' },
+  {
+    text: 'Ubezpieczenie zakupów',
+    icon: <SecurityIcon />,
+    path: '/app/insurance',
+  },
+  { text: 'Ustawienia', icon: <SettingsIcon />, path: '/app/settings' },
+  { text: 'Pomoc', icon: <HelpIcon />, path: '/app/help' },
+  { text: 'Wyloguj się', icon: <LogoutIcon />, path: '/logout' },
 ];
 
-export const Sidebar = ({ open, onClose, drawerWidth = 240 }: SidebarProps) => {
+export const Sidebar = ({ open, onClose, drawerWidth = 280 }: SidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
 
   const handleNavigate = (path: string) => {
+    if (path === '/logout') {
+      // Handle logout logic here
+      import('../services').then(({ authService }) => {
+        authService.logout();
+        navigate('/');
+      });
+      return;
+    }
     navigate(path);
     onClose();
   };
 
   const drawer = (
-    <Box sx={{ overflow: 'auto' }}>
-      <Toolbar />
-      
-      <Box sx={{ px: 2, py: 2 }}>
-        <Typography variant="overline" color="text.secondary" sx={{ fontWeight: 600 }}>
-          Menu
+    <Box
+      sx={{
+        overflow: 'auto',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        bgcolor: 'background.paper',
+      }}
+    >
+      {/* Logo Section */}
+      <Box sx={{ p: 3, borderBottom: '1px dashed', borderColor: 'divider' }}>
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{
+            fontWeight: 'bold',
+            letterSpacing: '-0.02em',
+            '& .logo-i': {
+              color: 'primary.main',
+            },
+            '& .logo-pay': {
+              color: 'secondary.main',
+            },
+          }}
+        >
+          <span className="logo-i">i</span>
+          <span className="logo-pay">Pay</span>
         </Typography>
       </Box>
 
-      <List>
-        {menuItems.map((item) => (
-          <Box key={item.path}>
-            <ListItem disablePadding>
+      {/* Main Menu */}
+      <Box sx={{ flexGrow: 1, py: 1 }}>
+        <List sx={{ px: 1 }}>
+          {menuItems.map(item => (
+            <ListItem key={item.path} disablePadding sx={{ mb: 0.5 }}>
               <ListItemButton
                 selected={location.pathname === item.path}
                 onClick={() => handleNavigate(item.path)}
                 sx={{
-                  mx: 1,
                   borderRadius: 1,
+                  py: 1.5,
+                  px: 2,
                   '&.Mui-selected': {
                     bgcolor: 'primary.main',
-                    color: 'primary.contrastText',
+                    color: 'white',
                     '&:hover': {
                       bgcolor: 'primary.dark',
                     },
                     '& .MuiListItemIcon-root': {
-                      color: 'primary.contrastText',
+                      color: 'white',
                     },
+                  },
+                  '&:hover': {
+                    bgcolor: 'action.hover',
                   },
                 }}
               >
                 <ListItemIcon
                   sx={{
-                    color: location.pathname === item.path ? 'inherit' : 'text.secondary',
+                    color:
+                      location.pathname === item.path
+                        ? 'white'
+                        : 'text.secondary',
+                    minWidth: 40,
                   }}
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.text} />
+                <ListItemText
+                  primary={item.text}
+                  primaryTypographyProps={{
+                    fontSize: '0.95rem',
+                    fontWeight: location.pathname === item.path ? 600 : 400,
+                  }}
+                />
               </ListItemButton>
             </ListItem>
-            {item.divider && <Divider sx={{ my: 1 }} />}
-          </Box>
-        ))}
-      </List>
+          ))}
+        </List>
+      </Box>
+
+      {/* Help Section */}
+      <Box
+        sx={{
+          p: 3,
+          borderTop: '1px dashed',
+          borderColor: 'divider',
+          bgcolor: 'background.default',
+        }}
+      >
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ mb: 2, fontWeight: 500 }}
+        >
+          Potrzebujesz pomocy?
+        </Typography>
+
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          <Link
+            href="/help"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              color: 'primary.main',
+              textDecoration: 'underline',
+              fontSize: '0.875rem',
+              '&:hover': {
+                color: 'primary.dark',
+              },
+            }}
+          >
+            <HelpIcon sx={{ fontSize: 18 }} />
+            Dział pomocy
+          </Link>
+
+          <Link
+            href="tel:+48508770470"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              color: 'primary.main',
+              textDecoration: 'underline',
+              fontSize: '0.875rem',
+              '&:hover': {
+                color: 'primary.dark',
+              },
+            }}
+          >
+            <PhoneIcon sx={{ fontSize: 18 }} />
+            +48 508 770 470
+          </Link>
+
+          <Link
+            href="mailto:wnioski@ipay24.pl"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1,
+              color: 'primary.main',
+              textDecoration: 'underline',
+              fontSize: '0.875rem',
+              '&:hover': {
+                color: 'primary.dark',
+              },
+            }}
+          >
+            <EmailContactIcon sx={{ fontSize: 18 }} />
+            wnioski@ipay24.pl
+          </Link>
+        </Box>
+      </Box>
     </Box>
   );
 
@@ -119,6 +245,7 @@ export const Sidebar = ({ open, onClose, drawerWidth = 240 }: SidebarProps) => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: drawerWidth,
+            borderRight: 'none',
           },
         }}
       >
@@ -133,8 +260,8 @@ export const Sidebar = ({ open, onClose, drawerWidth = 240 }: SidebarProps) => {
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
             width: drawerWidth,
-            borderRight: 1,
-            borderColor: 'divider',
+            borderRight: 'none',
+            position: 'relative',
           },
         }}
         open
@@ -144,4 +271,3 @@ export const Sidebar = ({ open, onClose, drawerWidth = 240 }: SidebarProps) => {
     </>
   );
 };
-

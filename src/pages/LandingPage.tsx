@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -7,78 +7,86 @@ import {
   Button,
   Box,
   Stack,
-} from '@mui/material'
+} from '@mui/material';
 import {
   Person as PersonIcon,
   Business as BusinessIcon,
-} from '@mui/icons-material'
+  Login as LoginIcon,
+  PersonAdd as RegisterIcon,
+} from '@mui/icons-material';
 
 export default function LandingPage() {
-  const [selectedClientType, setSelectedClientType] = useState<'individual' | 'business'>('individual')
-  const navigate = useNavigate()
+  const [selectedClientType, setSelectedClientType] = useState<
+    'individual' | 'business'
+  >('individual');
+  const navigate = useNavigate();
 
   const handleClientSelect = (type: 'individual' | 'business') => {
-    setSelectedClientType(type)
+    setSelectedClientType(type);
     // Auto-navigate when selection is made
     if (type === 'individual') {
-      navigate('/individual')
+      navigate('/app/new-application');
     } else {
-      navigate('/business')
+      navigate('/app/new-application');
     }
-  }
+  };
 
   return (
-    <Card sx={{ 
-      maxWidth: 600, 
-      mx: 'auto', 
-      boxShadow: 3,
-      borderRadius: 4,
-      overflow: 'visible'
-    }}>
+    <Card
+      sx={{
+        maxWidth: 600,
+        mx: 'auto',
+        boxShadow: 3,
+        borderRadius: 4,
+        overflow: 'visible',
+      }}
+    >
       <CardContent sx={{ p: 5 }}>
         <Box sx={{ mb: 5, textAlign: 'left' }}>
-          <Typography 
-            variant="h3" 
-            component="h1" 
+          <Typography
+            variant="h3"
+            component="h1"
             gutterBottom
             sx={{
               fontSize: { xs: '2rem', sm: '2.5rem' },
               fontWeight: 700,
               color: 'text.primary',
-              mb: 1
+              mb: 1,
             }}
           >
             Dopasuj ratę
           </Typography>
-          <Typography 
-            variant="h6" 
+          <Typography
+            variant="h6"
             color="text.secondary"
             sx={{
               fontSize: '1.1rem',
-              fontWeight: 400
+              fontWeight: 400,
             }}
           >
             Czego potrzebujesz
           </Typography>
         </Box>
-        
-        <Stack 
-          direction="row" 
-          spacing={0} 
-          sx={{ 
+
+        <Stack
+          direction="row"
+          spacing={0}
+          sx={{
             mb: 0,
             '& .MuiButton-root': {
               borderRadius: 0,
               borderRightWidth: 0,
               '&:last-child': {
                 borderRightWidth: 1,
-              }
-            }
+              },
+            },
           }}
         >
           <Button
             fullWidth
-            variant={selectedClientType === 'individual' ? 'contained' : 'outlined'}
+            variant={
+              selectedClientType === 'individual' ? 'contained' : 'outlined'
+            }
             onClick={() => handleClientSelect('individual')}
             sx={{
               p: 3,
@@ -99,23 +107,25 @@ export default function LandingPage() {
                 color: 'white',
                 '&:hover': {
                   backgroundColor: 'primary.dark',
-                }
-              })
+                },
+              }),
             }}
           >
             <PersonIcon sx={{ fontSize: 48 }} />
-            <Typography 
-              variant="body1" 
+            <Typography
+              variant="body1"
               fontWeight="medium"
               sx={{ fontSize: '1rem' }}
             >
               Klient indywidualny
             </Typography>
           </Button>
-          
+
           <Button
             fullWidth
-            variant={selectedClientType === 'business' ? 'contained' : 'outlined'}
+            variant={
+              selectedClientType === 'business' ? 'contained' : 'outlined'
+            }
             onClick={() => handleClientSelect('business')}
             sx={{
               p: 3,
@@ -136,13 +146,13 @@ export default function LandingPage() {
                 color: 'white',
                 '&:hover': {
                   backgroundColor: 'primary.dark',
-                }
-              })
+                },
+              }),
             }}
           >
             <BusinessIcon sx={{ fontSize: 48 }} />
-            <Typography 
-              variant="body1" 
+            <Typography
+              variant="body1"
               fontWeight="medium"
               sx={{ fontSize: '1rem' }}
             >
@@ -150,7 +160,27 @@ export default function LandingPage() {
             </Typography>
           </Button>
         </Stack>
+
+        {/* Auth Actions */}
+        <Box sx={{ mt: 4, display: 'flex', gap: 2, justifyContent: 'center' }}>
+          <Button
+            variant="outlined"
+            startIcon={<LoginIcon />}
+            onClick={() => navigate('/login')}
+            sx={{ minWidth: 140 }}
+          >
+            Zaloguj się
+          </Button>
+          <Button
+            variant="contained"
+            startIcon={<RegisterIcon />}
+            onClick={() => navigate('/register')}
+            sx={{ minWidth: 140 }}
+          >
+            Zarejestruj się
+          </Button>
+        </Box>
       </CardContent>
     </Card>
-  )
+  );
 }

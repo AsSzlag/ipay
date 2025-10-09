@@ -1,21 +1,18 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export default function IndividualClient() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="content-card">
       <div className="card-header">
-        <button 
-          className="back-button"
-          onClick={() => navigate('/')}
-        >
+        <button className="back-button" onClick={() => navigate('/')}>
           ← Powrót
         </button>
         <h1>Klient indywidualny</h1>
         <p>Wybierz produkt dla siebie</p>
       </div>
-      
+
       <div className="placeholder-content">
         <p>Ta strona będzie zawierać formularz dla klientów indywidualnych.</p>
         <p>Możesz dodać tutaj:</p>
@@ -27,5 +24,5 @@ export default function IndividualClient() {
         </ul>
       </div>
     </div>
-  )
+  );
 }

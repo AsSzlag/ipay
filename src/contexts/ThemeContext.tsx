@@ -1,4 +1,9 @@
-import React, { createContext, useState, useEffect, type ReactNode } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  type ReactNode,
+} from 'react';
 import { type Theme, ThemeProvider } from '@mui/material/styles';
 import { themes, type ThemeMode } from '../theme/themes';
 
@@ -15,7 +20,9 @@ interface ThemeContextProviderProps {
   children: ReactNode;
 }
 
-export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ children }) => {
+export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({
+  children,
+}) => {
   const [themeMode, setThemeModeState] = useState<ThemeMode>(() => {
     // Check localStorage for saved theme preference
     const savedTheme = localStorage.getItem('themeMode') as ThemeMode;
@@ -25,7 +32,7 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ chil
   const setThemeMode = (mode: ThemeMode) => {
     setThemeModeState(mode);
     localStorage.setItem('themeMode', mode);
-    
+
     // Apply theme to document for CSS custom properties
     document.documentElement.setAttribute('data-theme', mode);
   };
@@ -40,7 +47,7 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ chil
   useEffect(() => {
     // Apply initial theme
     document.documentElement.setAttribute('data-theme', themeMode);
-    
+
     // Listen for system theme changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleSystemThemeChange = (e: MediaQueryListEvent) => {
@@ -50,7 +57,7 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ chil
     };
 
     mediaQuery.addEventListener('change', handleSystemThemeChange);
-    
+
     return () => {
       mediaQuery.removeEventListener('change', handleSystemThemeChange);
     };
@@ -67,9 +74,7 @@ export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ chil
 
   return (
     <ThemeContext.Provider value={value}>
-      <ThemeProvider theme={theme}>
-        {children}
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ThemeContext.Provider>
   );
 };

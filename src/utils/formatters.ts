@@ -53,12 +53,12 @@ export const formatDateTime = (
 export const formatPhoneNumber = (phone: string): string => {
   // Remove all non-numeric characters
   const cleaned = phone.replace(/\D/g, '');
-  
+
   // Format as Polish phone number (XXX XXX XXX)
   if (cleaned.length === 9) {
     return cleaned.replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3');
   }
-  
+
   return phone;
 };
 
@@ -69,4 +69,3 @@ export const truncateText = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength).trim() + '...';
 };
-

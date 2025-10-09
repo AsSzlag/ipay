@@ -2,9 +2,9 @@
 export const designTokens = {
   // Brand Colors
   brand: {
-    primary: '#1a365d',      // iPay Blue
-    secondary: '#38a169',    // iPay Green
-    tertiary: '#ed8936',     // Accent Orange
+    primary: '#1a365d', // iPay Blue
+    secondary: '#38a169', // iPay Green
+    tertiary: '#ed8936', // Accent Orange
   },
 
   // Neutral Colors
@@ -34,19 +34,20 @@ export const designTokens = {
   // Typography
   typography: {
     fontFamily: {
-      primary: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
+      primary:
+        '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif',
       mono: '"JetBrains Mono", "Fira Code", monospace',
     },
     fontSize: {
-      xs: '0.75rem',    // 12px
-      sm: '0.875rem',   // 14px
-      base: '1rem',     // 16px
-      lg: '1.125rem',   // 18px
-      xl: '1.25rem',    // 20px
-      '2xl': '1.5rem',  // 24px
+      xs: '0.75rem', // 12px
+      sm: '0.875rem', // 14px
+      base: '1rem', // 16px
+      lg: '1.125rem', // 18px
+      xl: '1.25rem', // 20px
+      '2xl': '1.5rem', // 24px
       '3xl': '1.875rem', // 30px
       '4xl': '2.25rem', // 36px
-      '5xl': '3rem',    // 48px
+      '5xl': '3rem', // 48px
     },
     fontWeight: {
       light: 300,
@@ -66,25 +67,25 @@ export const designTokens = {
 
   // Spacing
   spacing: {
-    xs: '0.25rem',   // 4px
-    sm: '0.5rem',    // 8px
-    md: '1rem',      // 16px
-    lg: '1.5rem',    // 24px
-    xl: '2rem',      // 32px
-    '2xl': '3rem',   // 48px
-    '3xl': '4rem',   // 64px
-    '4xl': '6rem',   // 96px
+    xs: '0.25rem', // 4px
+    sm: '0.5rem', // 8px
+    md: '1rem', // 16px
+    lg: '1.5rem', // 24px
+    xl: '2rem', // 32px
+    '2xl': '3rem', // 48px
+    '3xl': '4rem', // 64px
+    '4xl': '6rem', // 96px
   },
 
   // Border Radius
   borderRadius: {
     none: '0',
-    sm: '0.125rem',   // 2px
-    base: '0.25rem',  // 4px
-    md: '0.375rem',   // 6px
-    lg: '0.5rem',     // 8px
-    xl: '0.75rem',    // 12px
-    '2xl': '1rem',    // 16px
+    sm: '0.125rem', // 2px
+    base: '0.25rem', // 4px
+    md: '0.375rem', // 6px
+    lg: '0.5rem', // 8px
+    xl: '0.75rem', // 12px
+    '2xl': '1rem', // 16px
     full: '9999px',
   },
 

@@ -104,7 +104,7 @@ export const ThemeSwitcher: React.FC = () => {
           },
         }}
       >
-        {themeOptions.map((option) => (
+        {themeOptions.map(option => (
           <MenuItem
             key={option.mode}
             onClick={() => handleThemeSelect(option.mode)}
@@ -119,9 +119,7 @@ export const ThemeSwitcher: React.FC = () => {
               },
             }}
           >
-            <ListItemIcon sx={{ minWidth: 36 }}>
-              {option.icon}
-            </ListItemIcon>
+            <ListItemIcon sx={{ minWidth: 36 }}>{option.icon}</ListItemIcon>
             <ListItemText
               primary={option.label}
               secondary={

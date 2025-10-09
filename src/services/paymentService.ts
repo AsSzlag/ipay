@@ -4,7 +4,10 @@ import type { Payment, PaginatedResponse } from '../types';
 
 export const paymentService = {
   // Get all payments
-  async getPayments(page: number = 1, pageSize: number = 10): Promise<PaginatedResponse<Payment>> {
+  async getPayments(
+    page: number = 1,
+    pageSize: number = 10
+  ): Promise<PaginatedResponse<Payment>> {
     const response = await apiService.get<PaginatedResponse<Payment>>(
       `/payments?page=${page}&pageSize=${pageSize}`
     );
@@ -19,19 +22,28 @@ export const paymentService = {
 
   // Get payments by client ID
   async getPaymentsByClientId(clientId: string): Promise<Payment[]> {
-    const response = await apiService.get<Payment[]>(`/clients/${clientId}/payments`);
+    const response = await apiService.get<Payment[]>(
+      `/clients/${clientId}/payments`
+    );
     return response.data;
   },
 
   // Create new payment
-  async createPayment(paymentData: Omit<Payment, 'id' | 'createdAt' | 'updatedAt'>): Promise<Payment> {
+  async createPayment(
+    paymentData: Omit<Payment, 'id' | 'createdAt' | 'updatedAt'>
+  ): Promise<Payment> {
     const response = await apiService.post<Payment>('/payments', paymentData);
     return response.data;
   },
 
   // Update payment status
-  async updatePaymentStatus(id: string, status: Payment['status']): Promise<Payment> {
-    const response = await apiService.put<Payment>(`/payments/${id}/status`, { status });
+  async updatePaymentStatus(
+    id: string,
+    status: Payment['status']
+  ): Promise<Payment> {
+    const response = await apiService.put<Payment>(`/payments/${id}/status`, {
+      status,
+    });
     return response.data;
   },
 
@@ -43,4 +55,3 @@ export const paymentService = {
 };
 
 export default paymentService;
-
