@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 
 const ProceedButton = () => {
   return <div>ProceedButton</div>;

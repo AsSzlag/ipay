@@ -1,4 +1,4 @@
-import { Box, Paper, Grid, Stack } from '@mui/material';
+import { Box, Paper, Stack } from '@mui/material';
 import IpayBg from '@/components/IpayBg';
 // import GoBackArrow from '@/components/Application/GoBackArrow';
 import ProceedButton from '@/components/Application/ProceedButton';
@@ -39,22 +39,26 @@ export default function NewInvidualApplication() {
     <IpayBg>
       <Box>
         <ProgressBarIndividual />
-        <Grid>
-          <Stack>
-            <PromoMessage />
-            <ValueSlider />
-            <Paper>
-              {products.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-              <AddAnotherProduct />
-            </Paper>
-            <AddistionalPriceInfo />
-          </Stack>
-          <Stack>
-            <LoanParameters />
-          </Stack>
-        </Grid>
+        <Box sx={{ display: 'flex', gap: 3 }}>
+          <Box sx={{ flex: 2 }}>
+            <Stack spacing={3}>
+              <PromoMessage />
+              <ValueSlider />
+              <Paper>
+                {products.map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+                <AddAnotherProduct />
+              </Paper>
+              <AddistionalPriceInfo />
+            </Stack>
+          </Box>
+          <Box sx={{ flex: 1 }}>
+            <Stack>
+              <LoanParameters />
+            </Stack>
+          </Box>
+        </Box>
 
         <Box>
           {/* <GoBackArrow /> */}
