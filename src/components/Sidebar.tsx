@@ -82,27 +82,6 @@ export const Sidebar = ({ open, onClose, drawerWidth = 280 }: SidebarProps) => {
         bgcolor: 'background.paper',
       }}
     >
-      {/* Logo Section */}
-      <Box sx={{ p: 3, borderBottom: '1px dashed', borderColor: 'divider' }}>
-        <Typography
-          variant="h5"
-          component="div"
-          sx={{
-            fontWeight: 'bold',
-            letterSpacing: '-0.02em',
-            '& .logo-i': {
-              color: 'primary.main',
-            },
-            '& .logo-pay': {
-              color: 'secondary.main',
-            },
-          }}
-        >
-          <span className="logo-i">i</span>
-          <span className="logo-pay">Pay</span>
-        </Typography>
-      </Box>
-
       {/* Main Menu */}
       <Box sx={{ flexGrow: 1, py: 1 }}>
         <List sx={{ px: 1 }}>
@@ -122,6 +101,10 @@ export const Sidebar = ({ open, onClose, drawerWidth = 280 }: SidebarProps) => {
                       bgcolor: 'primary.dark',
                     },
                     '& .MuiListItemIcon-root': {
+                      color: 'white',
+                    },
+                    // Ensure text label turns white when selected
+                    '& .MuiListItemText-primary': {
                       color: 'white',
                     },
                   },

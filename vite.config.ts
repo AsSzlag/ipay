@@ -20,6 +20,21 @@ export default defineConfig({
       },
     }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(dirname, './src'),
+      '@assets': path.resolve(dirname, './src/assets'),
+      '@components': path.resolve(dirname, './src/components'),
+      '@pages': path.resolve(dirname, './src/pages'),
+      '@services': path.resolve(dirname, './src/services'),
+      '@types': path.resolve(dirname, './src/types'),
+      '@utils': path.resolve(dirname, './src/utils'),
+      '@hooks': path.resolve(dirname, './src/hooks'),
+      '@contexts': path.resolve(dirname, './src/contexts'),
+      '@layouts': path.resolve(dirname, './src/layouts'),
+      '@theme': path.resolve(dirname, './src/theme'),
+    },
+  },
   test: {
     projects: [
       {

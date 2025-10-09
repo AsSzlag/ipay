@@ -8,8 +8,10 @@ import LandingPage from './pages/LandingPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
-import Applications from './pages/Applications';
-import NewApplication from './pages/NewApplication';
+import Applications from './pages/Applications/Applications';
+import NewApplication from './pages/Applications/NewApplication';
+import NewCompanyApplication from './pages/Applications/NewCompanyApplication';
+import NewInvidualApplication from './pages/Applications/NewInvidualApplication';
 import Loyalty from './pages/Loyalty';
 import Referrals from './pages/Referrals';
 import Share from './pages/Share';
@@ -38,6 +40,14 @@ function App() {
           <Route path="/app" element={<MainLayout />}>
             <Route index element={<Applications />} />
             <Route path="applications" element={<Applications />} />
+            <Route
+              path="new-individual-application"
+              element={<NewInvidualApplication />}
+            />
+            <Route
+              path="new-company-application"
+              element={<NewCompanyApplication />}
+            />
             <Route path="new-application" element={<NewApplication />} />
             <Route path="loyalty" element={<Loyalty />} />
             <Route path="referrals" element={<Referrals />} />

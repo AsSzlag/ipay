@@ -25,9 +25,9 @@ export default function LandingPage() {
     setSelectedClientType(type);
     // Auto-navigate when selection is made
     if (type === 'individual') {
-      navigate('/app/new-application');
+      navigate('/app/new-individual-application');
     } else {
-      navigate('/app/new-application');
+      navigate('/app/new-company-application');
     }
   };
 

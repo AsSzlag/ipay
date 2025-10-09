@@ -94,6 +94,7 @@ export const normalTheme: Theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: designTokens.borderRadius.lg,
+          borderColor: designTokens.neutral.gray200,
           padding: `${designTokens.spacing.md} ${designTokens.spacing.xl}`,
           boxShadow: 'none',
           '&:hover': {
@@ -102,12 +103,16 @@ export const normalTheme: Theme = createTheme({
         },
         contained: {
           backgroundColor: designTokens.brand.primary,
+          color: designTokens.neutral.white,
+          border: 'none',
           '&:hover': {
             backgroundColor: '#2c5282',
+            color: designTokens.neutral.white,
           },
         },
         outlined: {
-          borderColor: designTokens.brand.primary,
+          borderColor: designTokens.neutral.gray200,
+          borderWidth: 1,
           color: designTokens.brand.primary,
           '&:hover': {
             backgroundColor: `${designTokens.brand.primary}08`,

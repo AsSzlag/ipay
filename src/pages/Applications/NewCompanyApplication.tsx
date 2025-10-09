@@ -1,15 +1,14 @@
 import { Box, Typography, Paper } from '@mui/material';
 
-export default function Applications() {
+export default function NewCompanyApplication() {
   return (
     <Box>
       <Typography variant="h4" component="h1" gutterBottom>
-        Lista wniosków
+        Nowy wniosek
       </Typography>
       <Paper sx={{ p: 3, mt: 3 }}>
         <Typography variant="body1" color="text.secondary">
-          Tutaj będzie lista wszystkich wniosków z możliwością filtrowania i
-          zarządzania.
+          Tutaj będzie formularz do tworzenia nowego wniosku.
         </Typography>
       </Paper>
     </Box>
